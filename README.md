@@ -8,9 +8,9 @@
 4. Create an account, then sign in.
 5. Select a destination, enter the total budget in VND, tick any food preferences, and set the number of meals (1-10).
 
-`desktop.py` is the only file run directly. It starts Flask on a free local port on a background thread and displays the pages in a native window; nothing is exposed outside the machine and no browser opens.
+`desktop.py` is the only file run directly. It starts Flask on a free local port on a background thread and displays the pages in a native window; nothing is exposed outside the machine, and no browser opens.
 
-The SQLite database is created automatically on the first run and kept between runs, so records edited through `edit_restaurant` are not overwritten. Run from source it lives at `data/restaurants.db`; run from a packaged executable it moves to a per-user application folder, because the bundle is temporary and read-only (`paths.py`).
+The SQLite database is created automatically on the first run and kept between runs, so records edited through `edit_restaurant` are not overwritten. Run from source, it lives at `data/restaurants.db`; run from a packaged executable it moves to a per-user application folder, because the bundle is temporary and read-only (`paths.py`).
 
 See `HOW_TO_RUN.md` for setup in detail, for publishing to GitHub, and for building a standalone Windows executable.
 
@@ -22,10 +22,10 @@ See `HOW_TO_RUN.md` for setup in detail, for publishing to GitHub, and for build
 - The Bayesian prior is the dataset-wide mean of the verified ratings.
 - Food preference is a soft ranking signal weighted at 40%; it is not a hard filter.
 - The total budget is enforced across the whole course. There is no hard `total_budget / num_meals` price cap.
-- Course generation is greedy and uses the cheapest available prices for the remaining slots as a feasibility reservation.
+- Course generation is greedy and uses the lowest available prices for the remaining slots as a feasibility reservation.
 - Duplicate restaurants are detected by ID.
 - Restaurant editing uses a whitelist for SQL column names and parameterized values.
-- The interface offers destinations and food categories as fixed choices populated from the database, so neither can be misspelt.
+- The interface offers destinations and food categories as fixed choices populated from the database, so neither can be misspelled.
 - All input validation lives in `validation.py` and is called by the interface, so the tested rules and the enforced rules are the same.
 - The interface explicitly reports partial or impossible courses rather than presenting a short course as complete.
 - The processing modules are independent of the interface: the interface layer was replaced twice (tkinter, then Flask, then Flask inside a pywebview window) without changes to filtering, ranking or course generation.
@@ -35,10 +35,6 @@ See `HOW_TO_RUN.md` for setup in detail, for publishing to GitHub, and for build
 Run: `python -m pytest -q test_recommender.py test_auth.py`
 
 Current result: **23 tests passed** (15 recommender, 8 authentication).
-
-## Acknowledgement
-
-See `AI_USE_ACKNOWLEDGEMENT.md`. It must be completed before submission.
 
 ## Scope note
 
